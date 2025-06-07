@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Pieces - Login</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="../icone/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icone/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icone/favicon-16x16.png">
+  <link rel="stylesheet" href="../styles/login styles/formulario.css">
+  <link rel="stylesheet" href="../styles/login styles/header.css">
+  <link rel="stylesheet" href="../styles/login styles/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>World Pieces</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../paginas/home.html">Home</a></li>
+        <li>
+          <a href="../paginas/peças.html">Peças</a>
+          <ul class="submenu">
+            <li><a href="../paginas Peças/processadores.html">Processadores</a></li>
+            <li><a href="../paginas Peças/placadevideo.html">Placa de Vídeo</a></li>
+            <li><a href="../paginas Peças/fonte">Fonte</a></li>
+            <li><a href="../paginas Peças/placamãe.html">Placa Mãe</a></li>
+            <li><a href="../paginas Peças/ssd.html">SSD, HD</a></li>
+            <li><a href="../paginas Peças/memoria ram.html">Memória RAM</a></li>
+            <li><a href="../paginas Peças/notebook.html">Notebook</a></li>
+            <li><a href="../paginas Peças/water cooler.html">Water Cooler</a></li>
+            <li><a href="../paginas Peças/fone.html">Fone</a></li>
+            <li><a href="../paginas Peças/mouse.html">Mouse</a></li>
+            <li><a href="../paginas Peças/teclado.html">Teclado</a></li>
+            <li><a href="../paginas Peças/gabinete.html">Gabinete</a></li>
+          </ul>
+        </li>
+        <li><a href="../paginas/sobre.html">Sobre</a></li>
+        <li><a href="../paginas/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="login">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="senha" placeholder="Senha" required><br>
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="mensagem"></p>
+      <p>Não tem uma conta? <a href="../paginas/cadastro.html">Quero me cadastrar</a></p>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+      const msg = document.getElementById('mensagem');
+
+      const dados = localStorage.getItem(email);
+      if (!dados) {
+        msg.textContent = 'Usuário não encontrado!';
+        msg.style.color = 'red';
+        return;
+      }
+
+      const usuario = JSON.parse(dados);
+      if (usuario.senha === senha) {
+        msg.textContent = 'Login realizado com sucesso! Redirecionando...';
+        msg.style.color = 'green';
+        setTimeout(() => {
+          window.location.href = "../paginas/home.html";
+        }, 2000); // 2 segundos de espera antes de redirecionar
+      } else {
+        msg.textContent = 'Senha incorreta!';
+        msg.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>
