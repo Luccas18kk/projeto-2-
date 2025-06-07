@@ -1,0 +1,90 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    background: linear-gradient(90deg, #3926e4, #0D1B8C);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+header .logo h1 {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    text-transform:none;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 16px;
+    position: relative;
+    z-index: 3;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+nav ul a:hover {
+    background: rgba(9, 1, 122, 0.842);
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background: rgb(0, 73, 176);
+    backdrop-filter: blur(4px);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu li a {
+    display: block;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.3s ease;
+}
+
+.submenu li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+nav ul li:hover .submenu {
+    display: block;
+}
+
+
+

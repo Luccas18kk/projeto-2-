@@ -1,0 +1,86 @@
+<%@ page import="java.sql.*, br.com.worldpieces.Conexao" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>World Pieces - Teclado Mkw</title>
+    <link rel="stylesheet" href="../styles/peças styles uni/vendas peças.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>World Pieces</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../paginas/home.html">Home</a></li>
+                <li>
+                    <a href="../paginas/peças.html">Peças</a>
+                    <ul class="submenu">
+                 <li><a href="../paginas Peças/processadores.html">Processadores</a></li>
+                        <li><a href="../paginas Peças/placadevideo.html">Placa de Vídeo</a></li>
+                        <li><a href="../paginas Peças/placamãe.html">Placa Mãe</a></li>
+                        <li><a href="../paginas Peças/ssd.html">SSD, HD</a></li>
+                        <li><a href="../paginas Peças/memoria_ram.html">Memória RAM</a></li>
+                        <li><a href="../paginas Peças/notebook.html">Notebook</a></li>
+                        <li><a href="../paginas Peças/water cooler.html">Water Cooler</a></li>
+                        <li><a href="../paginas Peças/fone.html">Fone</a></li>
+                        <li><a href="../paginas Peças/mouse.html">Mouse</a></li>
+                        <li><a href="../paginas Peças/teclado.html">Teclado</a></li>
+                        <li><a href="../paginas Peças/gabinete.html">Gabinete</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="../paginas/sobre.html">Sobre</a>
+                    
+                </li>
+                <li><a href="../paginas/login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-card">
+            <img src="../peças img/teclado/teclado mkw.webp" alt="Teclado Mkw">
+            <h2>Teclado Mkw</h2>
+            <%
+                double preco = 0.00;
+                int estoque = 0;
+                boolean encontrado = false;
+
+                try (Connection conn = Conexao.getConnection();
+                     PreparedStatement stmt = conn.prepareStatement("SELECT preco, quantidade FROM Produtos WHERE nome LIKE ?")) {
+                    stmt.setString(1, "%JBL T110%");
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            preco = rs.getDouble("preco");
+                            estoque = rs.getInt("quantidade");
+                            encontrado = true;
+                        }
+                    }
+                } catch (Exception ignored) {
+                    // Nenhuma mensagem será mostrada ao usuário
+                }
+
+                if (encontrado) {
+            %>
+                <p><strong>Preço:</strong> R$ <%= String.format("%.2f", preco) %></p>
+                <p><strong>Disponibilidade:</strong> <%= estoque %> unidades em estoque</p>
+                <form action="ProdutoServlet" method="post">
+                    <input type="hidden" name="produto" value="Teclado Mkw">
+                    <button type="submit">Comprar</button>
+                </form>
+                <p class="avaliacao">Avaliação: ★★★★☆ (4.5/5)</p>
+            <%
+                } else {
+            %>
+                <p>Este produto não está disponível no momento.</p>
+            <%
+                }
+            %>
+        </div>
+    </main>
+</body>
+</html>
+

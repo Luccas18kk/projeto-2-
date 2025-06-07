@@ -1,0 +1,125 @@
+.product-section {
+    text-align: center;
+    padding: 60px 30px;
+    background: rgba(255, 255, 255, 0.85);
+    margin: 40px auto;
+    border-radius: 20px;
+    max-width: 1200px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    animation: fadeIn 1.2s ease-out forwards;
+}
+
+.product-section h3 {
+    font-size: 2rem;
+    color: #204d74;
+    margin-bottom: 35px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-shadow: 0 2px 6px rgba(32, 77, 116, 0.2);
+}
+
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+.product {
+    background: #ffffffcc;
+    border: 1px solid rgba(32, 77, 116, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    text-align: center;
+    flex: 1 1 calc(22% - 20px);
+    max-width: calc(22% - 20px);
+    transition: all 0.3s ease;
+    animation: slideUp 1.2s ease-out forwards;
+}
+
+.product:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 123, 255, 0.2);
+    background: #fff;
+}
+
+
+.product img {
+    max-width: 100%;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.07);
+}
+
+
+.product p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+
+.product a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4b87c5, #0056b3);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.product a:hover {
+    background: linear-gradient(135deg, #003d80, #004ca0);
+    transform: scale(1.04);
+}
+
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .product {
+        flex: 1 1 calc(45% - 20px);
+        max-width: calc(45% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+
