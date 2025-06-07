@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>World Pieces - memoria kingston ddr5</title>
+  <link rel="stylesheet" href="../styles/peças styles uni/vendas peças.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>World Pieces - memoria kingston ddr5</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="../paginas/home.html">Home</a></li>
+        <li>
+          <a href="../paginas/peças.html">Peças</a>
+          <ul class="submenu">
+            <li><a href="./processadores.html">Processadores</a></li>
+            <li><a href="./placadevideo.html">Placa de Vídeo</a></li>
+            <li><a href="./fonte.html">Fonte</a></li>
+            <li><a href="./placamãe.html">Placa Mãe</a></li>
+            <li><a href="./ssd.html">SSD, HD</a></li>
+            <li><a href="./memoria ram.html">Memória RAM</a></li>
+            <li><a href="./notebook.html">Notebook</a></li>
+            <li><a href="./water cooler.html">Water Cooler</a></li>
+            <li><a href="./fone.html">Fone</a></li>
+            <li><a href="./mouse.html">Mouse</a></li>
+            <li><a href="./teclado.html">Teclado</a></li>
+            <li><a href="./gabinete.html">Gabinete</a></li>
+          </ul>
+        </li>
+        <li><a href="../paginas/sobre.html">Sobre</a></li>
+        <li><a href="../paginas/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="product-card">
+      <img src="../peças img/memoria ram/memoria kingston ddr5.webp" alt="Placa de Vídeo Aero">
+      <h2 id="nome">Carregando...</h2>
+      <p id="preco">Preço: R$ --</p>
+      <p id="quantidade">Estoque disponível: -- unidades</p>
+      <input type="number" id="qtd" min="1" value="1" />
+      <button onclick="comprar()" class="botao-comprar">Comprar</button>
+      <p class="avaliacao">Avaliação: ★★★★☆ (4.5/5)</p>
+    </div>
+  </main>
+
+  <script>
+    // Buscando produto com ID 11 (ajuste conforme o ID real da Placa de Vídeo Aero no seu banco)
+     fetch("/api/produto?id=7")
+
+      .then(res => {
+        if (!res.ok) throw new Error("Produto não encontrado");
+        return res.json();
+      })
+      .then(prod => {
+        document.getElementById("nome").textContent = prod.nome;
+        document.getElementById("preco").textContent = "Preço: R$ " + parseFloat(prod.preco).toFixed(2);
+        document.getElementById("quantidade").textContent = "Estoque disponível: " + prod.quantidade + " unidades";
+      })
+      .catch(() => {
+        document.getElementById("nome").textContent = "Produto não encontrado.";
+      });
+
+    function comprar() {
+      const qtd = parseInt(document.getElementById("qtd").value);
+      if (qtd > 0) {
+        alert("Pedido de compra realizado com sucesso!\nQuantidade: " + qtd);
+        // Aqui você pode futuramente enviar via POST para um /api/compra
+      } else {
+        alert("Digite uma quantidade válida.");
+      }
+    }
+  </script>
+</body>
+</html>
